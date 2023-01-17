@@ -1,0 +1,38 @@
+---
+import type { MarkdownInstance } from "astro";
+import BlogPost from "../../components/BlogPost.astro";
+import Layout from "../../layouts/Layout.astro";
+
+type PostResult = {
+    params: {
+        slug: string | number;
+    };
+    props?: {
+        post: MarkdownInstance<Record<string, any>>;
+    };
+}[];
+
+export async function getStaticPaths() {
+    const slugify = ({ slug, title }: Record<string, any>) =>
+        slug ?? encodeURIComponent(title.toLowerCase().split(" ").join("-"));
+
+    const posts = await Astro.glob("../../blog-content/*.md");
+    const filteredPosts = posts.filter(({ frontmatter }) => !frontmatter.draft);
+
+    const paths: PostResult = filteredPosts.map((post) => ({
+        params: { slug: slugify(post.frontmatter) },
+        props: { post },
+    }));
+
+    return paths;
+}
+
+const { post } = Astro.props;
+const headings = post.getHeadings();
+---
+
+<Layout title={post.frontmatter.title}>
+    <!-- Left sidebar: blog posts -->
+    <BlogPost post={post} />
+    <!-- Right sidebar: headings of current post -->
+</Layout>

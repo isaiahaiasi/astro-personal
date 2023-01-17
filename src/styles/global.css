@@ -1,0 +1,19 @@
+:root {
+  --accent: 124, 58, 237;
+  --accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
+}
+
+html {
+  font-family: system-ui, sans-serif;
+  background-color: #F6F6F6;
+}
+
+code {
+  font-family: menlo, "Fira Code", "IBM Plex Mono", "Lucida Console", "Liberation Mono", "DejaVu Sans Mono",
+    "Bitstream Vera Sans Mono", "Courier New", monospace;
+}
+
+pre.astro-code {
+  padding: 1rem;
+  border-radius: 10px;
+}

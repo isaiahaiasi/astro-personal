@@ -1,0 +1,19 @@
+---
+const navItems = [
+    ["Home", "/"],
+    ["Blog", "/blog/"],
+    ["Projects", "/projects"],
+];
+---
+
+<nav>
+    {navItems.map(([name, url]) => <a href={url}>{name}</a>)}
+</nav>
+
+<style>
+    nav {
+        display: flex;
+        gap: 1rem;
+        flex-direction: flex-end;
+    }
+</style>
