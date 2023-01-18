@@ -1,5 +1,6 @@
 ---
 import type { MarkdownInstance } from "astro";
+import { formatDate } from "../utils/formatDate";
 import { slugify } from "../utils/slugify";
 
 export interface Props {
@@ -14,5 +15,20 @@ const url = `/blog/${slugify(frontmatter)}`;
 <div>
     <a href={url}><h3>{frontmatter.title}</h3></a>
     {frontmatter.description && <p>{frontmatter.description}</p>}
-    <p>Published {frontmatter.publishedAt}</p>
+    {
+        frontmatter.publishedAt && (
+            <p class="descriptive">
+                Published {formatDate(frontmatter.publishedAt)}
+            </p>
+        )
+    }
 </div>
+<style>
+    h3 {
+        margin: 0;
+        line-height: 2em;
+    }
+    p {
+        margin: 0;
+    }
+</style>

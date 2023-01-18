@@ -1,5 +1,6 @@
 ---
 import type { MarkdownInstance } from "astro";
+import { formatDate } from "../utils/formatDate";
 
 export interface Props {
     post: MarkdownInstance<Record<string, any>>;
@@ -11,6 +12,13 @@ const { frontmatter, Content } = post;
 
 <main class="w-prose">
     <h1>{frontmatter.title}</h1>
+    {
+        frontmatter.publishedAt && (
+            <p class="descriptive">
+                Published {formatDate(frontmatter.publishedAt)}
+            </p>
+        )
+    }
     {frontmatter.createdAt && <div>Published on: {frontmatter.createdAt}</div>}
 
     <Content />

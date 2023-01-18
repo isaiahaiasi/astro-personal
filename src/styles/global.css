@@ -22,3 +22,8 @@ pre.astro-code {
   max-width: 630px;
   margin: auto;
 }
+
+.descriptive {
+  color: rgb(86, 86, 86);
+  font-style: italic;
+}

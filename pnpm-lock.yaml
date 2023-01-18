@@ -4,12 +4,14 @@ specifiers:
   '@astrojs/preact': ^1.2.0
   '@astrojs/rss': ^2.0.0
   astro: ^1.9.0
+  date-fns: ^2.29.3
   preact: ^10.6.5
 
 dependencies:
   '@astrojs/preact': 1.2.0_preact@10.11.3
   '@astrojs/rss': 2.0.0
   astro: 1.9.2
+  date-fns: 2.29.3
   preact: 10.11.3
 
 packages:
@@ -988,6 +990,11 @@ packages:
   /data-uri-to-buffer/4.0.1:
     resolution: {integrity: sha512-0R9ikRb668HB7QDxT1vkpuUBtqc53YyAwMwGeUFKRojY/NWKvdZ+9UYtRfGmhqNbRkTSVpMbmyhXipFFv2cb/A==}
     engines: {node: '>= 12'}
+    dev: false
+
+  /date-fns/2.29.3:
+    resolution: {integrity: sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==}
+    engines: {node: '>=0.11'}
     dev: false
 
   /debug/4.3.4:
