@@ -1,8 +1,6 @@
 ---
 import HeadingTree from "./HeadingTree";
 
-const { headings, title } = Astro.props;
-
 interface Heading {
     depth: number;
     slug: string;
@@ -12,6 +10,13 @@ interface Heading {
 interface NestedHeading extends Heading {
     children?: NestedHeading[];
 }
+
+export interface Props {
+    headings: Heading[];
+    title: string;
+}
+
+const { headings, title } = Astro.props;
 
 const root: NestedHeading = {
     text: title,
@@ -41,6 +46,7 @@ for (const heading of headings) {
     </ul>
 </div>
 
+{/* This interactivity didn't feel worth bringing Preact state into the mix */}
 <script>
     let active: Element | null = null;
     const root = document.querySelector(".heading-tree");
@@ -58,6 +64,7 @@ for (const heading of headings) {
     });
 </script>
 
+{/* global directive to access elements from Preact component */}
 <style is:global>
     .heading-tree {
         --headings-col-highlight: skyblue;

@@ -1,0 +1,21 @@
+---
+import BlogPostPreview from "./BlogPostPreview.astro";
+
+const posts = await Astro.glob("../content/blog/**/*.md");
+---
+
+<ul>
+    {
+        posts.map((post) => (
+            <li>
+                <BlogPostPreview post={post} />
+            </li>
+        ))
+    }
+</ul>
+<style>
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+</style>

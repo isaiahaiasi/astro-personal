@@ -1,7 +1,7 @@
 ---
 import type { MarkdownInstance } from "astro";
 
-interface Props {
+export interface Props {
     post: MarkdownInstance<Record<string, any>>;
 }
 
@@ -9,16 +9,9 @@ const { post }: Props = Astro.props;
 const { frontmatter, Content } = post;
 ---
 
-<main>
+<main class="w-prose">
     <h1>{frontmatter.title}</h1>
     {frontmatter.createdAt && <div>Published on: {frontmatter.createdAt}</div>}
 
     <Content />
 </main>
-
-<style>
-    main {
-        max-width: 630px;
-        margin: auto;
-    }
-</style>

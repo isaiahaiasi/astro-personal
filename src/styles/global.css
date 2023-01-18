@@ -17,3 +17,8 @@ pre.astro-code {
   padding: 1rem;
   border-radius: 10px;
 }
+
+.w-prose {
+  max-width: 630px;
+  margin: auto;
+}

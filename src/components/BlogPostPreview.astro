@@ -1,0 +1,18 @@
+---
+import type { MarkdownInstance } from "astro";
+import { slugify } from "../utils/slugify";
+
+export interface Props {
+    post: MarkdownInstance<Record<string, any>>;
+}
+
+const { post } = Astro.props;
+const { frontmatter } = post;
+const url = `/blog/${slugify(frontmatter)}`;
+---
+
+<div>
+    <a href={url}><h3>{frontmatter.title}</h3></a>
+    {frontmatter.description && <p>{frontmatter.description}</p>}
+    <p>Published {frontmatter.publishedAt}</p>
+</div>
