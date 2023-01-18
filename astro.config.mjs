@@ -10,5 +10,6 @@ export default defineConfig({
       theme: 'dracula'
     }
   },
+  site: "https://isaiah.fyi",
   integrations: [preact()]
 });

@@ -1,7 +1,6 @@
 ---
 title: Breadth First Search
-# slug: breadth-first-search
-createdAt: 2023-01-15
+publishedAt: 2023-01-15
 tags: ["dsa"]
 ---
 Good for finding the shortest number of nodes between 2 nodes (aka, shortest path in an unweighted graph)

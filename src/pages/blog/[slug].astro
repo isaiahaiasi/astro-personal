@@ -3,10 +3,11 @@ import type { MarkdownInstance } from "astro";
 import BlogPost from "../../components/BlogPost.astro";
 import HeadingsList from "../../components/HeadingsList.astro";
 import Layout from "../../layouts/Layout.astro";
+import { slugify } from "../../utils/slugify";
 
 type PostResult = {
     params: {
-        slug: string | number;
+        slug: string;
     };
     props?: {
         post: MarkdownInstance<Record<string, any>>;
@@ -14,10 +15,7 @@ type PostResult = {
 }[];
 
 export async function getStaticPaths() {
-    const slugify = ({ slug, title }: Record<string, any>) =>
-        slug ?? encodeURIComponent(title.toLowerCase().split(" ").join("-"));
-
-    const posts = await Astro.glob("../../blog-content/*.md");
+    const posts = await Astro.glob("../../content/blog/*.md");
     const filteredPosts = posts.filter(({ frontmatter }) => !frontmatter.draft);
 
     const paths: PostResult = filteredPosts.map((post) => ({
