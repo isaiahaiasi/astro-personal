@@ -1,6 +1,7 @@
 ---
 import type { MarkdownInstance } from "astro";
 import BlogPost from "../../components/BlogPost.astro";
+import HeadingsList from "../../components/HeadingsList.astro";
 import Layout from "../../layouts/Layout.astro";
 
 type PostResult = {
@@ -32,7 +33,31 @@ const headings = post.getHeadings();
 ---
 
 <Layout title={post.frontmatter.title}>
-    <!-- Left sidebar: blog posts -->
-    <BlogPost post={post} />
-    <!-- Right sidebar: headings of current post -->
+    <div class="container">
+        <div class="sidebar left">
+            <p>TODO: posts list sidebar</p>
+        </div>
+        <div class="center-content">
+            <BlogPost post={post} />
+        </div>
+        <div class="sidebar right">
+            <HeadingsList headings={headings} title={post.frontmatter.title} />
+        </div>
+    </div>
 </Layout>
+
+<style>
+    .container {
+        position: relative;
+        display: flex;
+    }
+    .sidebar {
+        align-self: flex-start;
+        top: 0;
+        position: sticky;
+        padding: 1.5rem;
+    }
+    .center-content {
+        flex: 1;
+    }
+</style>
