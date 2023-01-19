@@ -1,5 +1,5 @@
 ---
-import HeadingTree from "./HeadingTree";
+import HeadingTree from "./ContentHeadingTree";
 
 interface Heading {
     depth: number;
@@ -74,14 +74,27 @@ for (const heading of headings) {
     .heading-tree ul {
         list-style: none;
         padding: 0;
+        margin-left: 0.5rem;
+        border-left: 1px solid grey;
+    }
+
+    .heading-tree > ul {
+        border-left: none;
+        margin: none;
     }
 
     .heading-tree li {
         padding: 0 0 0 1rem;
-        line-height: 1.5rem;
+        display: block;
+    }
+
+    .heading-tree a {
+        display: block;
+        padding: 0.5rem;
     }
 
     .heading-tree a:hover {
+        border-radius: 4px;
         background: var(--headings-col-highlight);
     }
 

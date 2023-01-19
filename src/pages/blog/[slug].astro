@@ -2,7 +2,7 @@
 import type { MarkdownInstance } from "astro";
 import BlogPost from "../../components/BlogPost.astro";
 import BlogPostList from "../../components/BlogPostList.astro";
-import HeadingsList from "../../components/HeadingsList.astro";
+import ContentHeadingList from "../../components/ContentHeadingList.astro";
 import Layout from "../../layouts/Layout.astro";
 import { slugify } from "../../utils/slugify";
 
@@ -34,13 +34,18 @@ const headings = post.getHeadings();
 <Layout title={post.frontmatter.title}>
     <div class="container">
         <div class="sidebar left">
+            <h2 class="text-gradient">Other Blog Posts</h2>
             <BlogPostList />
         </div>
-        <div class="center-content">
+        <main class="center-content">
             <BlogPost post={post} />
-        </div>
+        </main>
         <div class="sidebar right">
-            <HeadingsList headings={headings} title={post.frontmatter.title} />
+            <h2 class="text-gradient">Table of Contents</h2>
+            <ContentHeadingList
+                headings={headings}
+                title={post.frontmatter.title}
+            />
         </div>
     </div>
 </Layout>

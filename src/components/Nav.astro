@@ -1,12 +1,20 @@
 ---
 const navItems = [
-    ["Home", "/"],
+    ["About", "/"],
     ["Blog", "/blog/"],
 ];
 ---
 
 <nav>
-    {navItems.map(([name, url]) => <a href={url}>{name}</a>)}
+    <ul>
+        {
+            navItems.map(([name, url]) => (
+                <li>
+                    <a href={url}>{name}</a>
+                </li>
+            ))
+        }
+    </ul>
 </nav>
 
 <style>
@@ -14,5 +22,23 @@ const navItems = [
         display: flex;
         gap: 1rem;
         flex-direction: flex-end;
+    }
+
+    nav ul {
+        list-style: none;
+        padding: none;
+        display: flex;
+    }
+
+    nav a {
+        text-decoration: none;
+        font-size: 1.25rem;
+        font-weight: bold;
+        padding: 0.25rem 0.5rem;
+    }
+
+    nav a:hover {
+        background: lightblue;
+        border-radius: 4px;
     }
 </style>

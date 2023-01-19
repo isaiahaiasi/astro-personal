@@ -10,8 +10,8 @@ const { post }: Props = Astro.props;
 const { frontmatter, Content } = post;
 ---
 
-<main class="w-prose">
-    <h1>{frontmatter.title}</h1>
+<div class="w-prose">
+    <h1 class="text-gradient">{frontmatter.title}</h1>
     {
         frontmatter.publishedAt && (
             <p class="descriptive">
@@ -22,4 +22,4 @@ const { frontmatter, Content } = post;
     {frontmatter.createdAt && <div>Published on: {frontmatter.createdAt}</div>}
 
     <Content />
-</main>
+</div>

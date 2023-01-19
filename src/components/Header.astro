@@ -1,0 +1,35 @@
+---
+import Nav from "./Nav.astro";
+---
+
+<header class="w-prose">
+    <div class="left logo">
+        <a href="/">
+            <span class="text-gradient text-large">Isaiah</span>
+            <span class="text-small">.fyi</span>
+        </a>
+    </div>
+    <div class="right">
+        <Nav />
+    </div>
+</header>
+
+<style>
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    header a {
+        text-decoration: none;
+    }
+
+    .logo {
+        font-weight: bold;
+    }
+
+    .text-large {
+        font-size: 2rem;
+    }
+</style>

@@ -1,37 +1,40 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Isaiah Althouse">
 	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
+		<h1>
+			Hi there, I'm <span class="text-gradient">Isaiah</span>
+		</h1>
+
+		<p>
+			A web-developer specializing in Express & React, figuring things out
+			as I go! 🤓
 		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
+
+		<p>
+			Wanna see what I'm working on right now? Check out my <a
+				href="/projects">Projects</a
+			>!
+		</p>
+
+		<p>
+			Some of the tech I've been using recently:
+			<div>TODO: tech icon grid</div>
+		</p>
+
+		<p>
+			Wanna reach out to me? <a href="/contact">Contact me directly</a>,
+			or find me at any of these places: <div>TODO: social links</div>
+		</p>
+
+		<p>
+			Wanna know what else I'm up to? I love illustration, photography,
+			and hiking, and talk about these things from time to time on my <a
+				href="/blog">Blog</a
+			>!
+		</p>
 	</main>
 </Layout>
 
@@ -45,13 +48,6 @@ import Card from '../components/Card.astro';
 		font-size: 3rem;
 		font-weight: 800;
 		margin: 0;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
 	}
 	.instructions {
 		line-height: 1.6;

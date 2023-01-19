@@ -6,6 +6,7 @@
 html {
   font-family: system-ui, sans-serif;
   background-color: #F6F6F6;
+  line-height: 1.5;
 }
 
 code {
@@ -21,6 +22,15 @@ pre.astro-code {
 .w-prose {
   max-width: 630px;
   margin: auto;
+}
+
+.text-gradient {
+  background-image: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 400%;
+  background-position: 0%;
 }
 
 .descriptive {
