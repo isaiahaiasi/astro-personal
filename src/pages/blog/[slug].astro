@@ -1,51 +1,53 @@
 ---
-import type { MarkdownInstance } from "astro";
-import BlogPost from "../../components/BlogPost.astro";
+import { CollectionEntry, getCollection } from "astro:content";
 import BlogPostList from "../../components/BlogPostList.astro";
 import ContentHeadingList from "../../components/ContentHeadingList.astro";
 import Layout from "../../layouts/Layout.astro";
-import { slugify } from "../../utils/slugify";
+import { formatDate } from "../../utils/formatDate";
 
-type PostResult = {
-    params: {
-        slug: string;
-    };
-    props?: {
-        post: MarkdownInstance<Record<string, any>>;
-    };
-}[];
+interface Props {
+    post: CollectionEntry<"blog">;
+}
 
 export async function getStaticPaths() {
-    const posts = await Astro.glob("../../content/blog/*.md");
-    const filteredPosts = posts.filter(({ frontmatter }) => !frontmatter.draft);
+    const entries = await getCollection("blog");
+    const now = new Date();
 
-    const paths: PostResult = filteredPosts.map((post) => ({
-        params: { slug: slugify(post.frontmatter) },
-        props: { post },
-    }));
-
-    return paths;
+    return entries
+        .filter((post) => post.data.publishedAt < now)
+        .map((post) => ({
+            params: { slug: post.slug },
+            props: { post },
+        }));
 }
 
 const { post } = Astro.props;
-const headings = post.getHeadings();
+const { data } = post;
+const { Content, headings } = await post.render();
 ---
 
-<Layout title={post.frontmatter.title}>
+<Layout title={data.title}>
     <div class="container">
         <div class="sidebar left">
             <h2 class="text-gradient">Other Blog Posts</h2>
             <BlogPostList />
         </div>
         <main class="center-content">
-            <BlogPost post={post} />
+            <div class="w-prose">
+                <h1 class="text-gradient">{data.title}</h1>
+                {
+                    data.publishedAt && (
+                        <p class="descriptive">
+                            Published {formatDate(data.publishedAt)}
+                        </p>
+                    )
+                }
+                <Content />
+            </div>
         </main>
         <div class="sidebar right">
             <h2 class="text-gradient">Table of Contents</h2>
-            <ContentHeadingList
-                headings={headings}
-                title={post.frontmatter.title}
-            />
+            <ContentHeadingList headings={headings} title={data.title} />
         </div>
     </div>
 </Layout>

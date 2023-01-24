@@ -1,6 +1,7 @@
 ---
 title: Breadth-First Search
 publishedAt: 2023-01-15
+slug: breadth-first-search
 description: "Notes on using Breadth-First Search (BFS) for traversing a graph."
 tags: ["algorithms"]
 ---

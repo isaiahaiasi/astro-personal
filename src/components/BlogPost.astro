@@ -1,25 +1,22 @@
 ---
-import type { MarkdownInstance } from "astro";
+import type { CollectionEntry } from "astro:content";
 import { formatDate } from "../utils/formatDate";
 
 export interface Props {
-    post: MarkdownInstance<Record<string, any>>;
+    post: CollectionEntry<"blog">;
 }
 
-const { post }: Props = Astro.props;
-const { frontmatter, Content } = post;
+const { post } = Astro.props;
+const { data } = post;
+const { Content } = await post.render();
 ---
 
 <div class="w-prose">
-    <h1 class="text-gradient">{frontmatter.title}</h1>
+    <h1 class="text-gradient">{data.title}</h1>
     {
-        frontmatter.publishedAt && (
-            <p class="descriptive">
-                Published {formatDate(frontmatter.publishedAt)}
-            </p>
+        data.publishedAt && (
+            <p class="descriptive">Published {formatDate(data.publishedAt)}</p>
         )
     }
-    {frontmatter.createdAt && <div>Published on: {frontmatter.createdAt}</div>}
-
     <Content />
 </div>

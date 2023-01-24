@@ -1,25 +1,22 @@
 ---
-import type { MarkdownInstance } from "astro";
+import type { CollectionEntry } from "astro:content";
 import { formatDate } from "../utils/formatDate";
-import { slugify } from "../utils/slugify";
 
 export interface Props {
-    post: MarkdownInstance<Record<string, any>>;
+    post: CollectionEntry<"blog">;
 }
 
 const { post } = Astro.props;
-const { frontmatter } = post;
-const url = `/blog/${slugify(frontmatter)}`;
+const { data } = post;
+const url = `/blog/${post.slug}`;
 ---
 
 <div>
-    <a href={url}><h3>{frontmatter.title}</h3></a>
-    {frontmatter.description && <p>{frontmatter.description}</p>}
+    <a href={url}><h3>{data.title}</h3></a>
+    {data.description && <p>{data.description}</p>}
     {
-        frontmatter.publishedAt && (
-            <p class="descriptive">
-                Published {formatDate(frontmatter.publishedAt)}
-            </p>
+        data.publishedAt && (
+            <p class="descriptive">Published {formatDate(data.publishedAt)}</p>
         )
     }
 </div>

@@ -1,7 +1,8 @@
 ---
+import { CollectionEntry, getCollection } from "astro:content";
 import BlogPostPreview from "./BlogPostPreview.astro";
 
-const posts = await Astro.glob("../content/blog/**/*.md");
+let posts = await getCollection("blog");
 ---
 
 <ul>
