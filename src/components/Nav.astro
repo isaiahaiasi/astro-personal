@@ -1,4 +1,9 @@
 ---
+export interface Props {
+    active: string;
+}
+
+const { active } = Astro.props;
 const navItems = [
     ["About", "/"],
     ["Blog", "/blog/"],
@@ -9,7 +14,7 @@ const navItems = [
     <ul>
         {
             navItems.map(([name, url]) => (
-                <li>
+                <li class:list={[{ active: active === name }]}>
                     <a href={url}>{name}</a>
                 </li>
             ))
@@ -40,5 +45,12 @@ const navItems = [
     nav a:hover {
         background: lightblue;
         border-radius: 4px;
+    }
+
+    .active {
+        text-decoration-line: underline;
+        text-decoration-style: wavy;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 4px;
     }
 </style>
