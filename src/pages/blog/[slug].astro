@@ -24,13 +24,25 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { data } = post;
 const { Content, headings } = await post.render();
+
+/** Filter collection for entries which share a tag with this post
+ *
+ * (not optimized for large collections)
+ */
+function filterRelatedPosts({ id, data: { tags } }: CollectionEntry<"blog">) {
+    if (id === post.id) {
+        return false;
+    }
+
+    return tags.some((tag) => post.data.tags.includes(tag));
+}
 ---
 
 <Layout title={data.title}>
     <div class="container">
         <div class="sidebar left">
             <h2 class="text-gradient">Other Blog Posts</h2>
-            <BlogPostList />
+            <BlogPostList filter={filterRelatedPosts} />
         </div>
         <main class="center-content">
             <div class="w-prose">

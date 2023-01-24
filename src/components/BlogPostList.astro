@@ -2,7 +2,17 @@
 import { CollectionEntry, getCollection } from "astro:content";
 import BlogPostPreview from "./BlogPostPreview.astro";
 
-let posts = await getCollection("blog");
+interface Props {
+    filter?: (entry: CollectionEntry<"blog">) => boolean;
+}
+
+const { filter } = Astro.props;
+
+const allPosts = await getCollection("blog");
+
+const filteredPosts = filter ? allPosts.filter(filter) : [];
+
+const posts = filteredPosts.length > 0 ? filteredPosts : allPosts;
 ---
 
 <ul>
