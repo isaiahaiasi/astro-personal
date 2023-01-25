@@ -1,13 +1,15 @@
 ---
+import { getCollection } from "astro:content";
 import BlogPostList from "../../components/BlogPostList.astro";
 import Layout from "../../layouts/Layout.astro";
 
+const posts = await getCollection("blog");
 const title = "Blog";
 ---
 
 <Layout title={title}>
     <main class="w-prose">
         <h1 class="text-gradient">{title}</h1>
-        <BlogPostList />
+        <BlogPostList posts={posts} />
     </main>
 </Layout>

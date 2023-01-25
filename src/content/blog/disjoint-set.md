@@ -5,7 +5,7 @@ publishedAt: 2023-01-24
 tags:
 - algorithms
 - graphs
-- data structures
+- data-structures
 ---
 
 ## Disjoint Set Union

@@ -13,5 +13,15 @@ const { publishedAt, tags } = data;
 
 <div class="descriptive">
     <div>Published {formatDate(publishedAt)}</div>
-    <div>Tags: {tags.join(", ")}</div>
+    <div>
+        Tags:
+        {
+            tags.map((tag, i) => (
+                <>
+                    {i > 0 && ", "}
+                    <a href={`/blog/tags/${tag}`}>{tag}</a>
+                </>
+            ))
+        }
+    </div>
 </div>

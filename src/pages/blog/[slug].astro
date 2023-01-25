@@ -7,42 +7,53 @@ import Layout from "../../layouts/Layout.astro";
 
 interface Props {
     post: CollectionEntry<"blog">;
+    relevantPosts: CollectionEntry<"blog">[];
 }
 
 export async function getStaticPaths() {
-    const entries = await getCollection("blog");
+    // TODO: Would like to wrap this as getPublishedCollection,
+    // But not sure how to preserve generic typing with non-exported types
     const now = new Date();
+    const entries = await getCollection(
+        "blog",
+        ({ data }) => !data.draft && data.publishedAt < now
+    );
 
-    return entries
-        .filter((post) => post.data.publishedAt < now)
-        .map((post) => ({
+    // There might be no posts with shared tags; in that case, get 3 most recent
+    const recentPosts = entries
+        .sort((a, b) => (a.data.publishedAt < b.data.publishedAt ? 1 : -1))
+        .slice(0, 3);
+
+    return entries.map((post) => {
+        const relatedPosts = entries.filter(({ id, data: { tags } }) => {
+            return (
+                id !== post.id &&
+                tags.some((tag) => post.data.tags.includes(tag))
+            );
+        });
+
+        const relevantPosts =
+            relatedPosts.length > 0
+                ? relatedPosts
+                : recentPosts.filter(({ id }) => id !== post.id);
+
+        return {
             params: { slug: post.slug },
-            props: { post },
-        }));
+            props: { post, relevantPosts },
+        };
+    });
 }
 
-const { post } = Astro.props;
+const { post, relevantPosts } = Astro.props;
 const { data } = post;
 const { Content, headings } = await post.render();
-
-/** Filter collection for entries which share a tag with this post
- *
- * (not optimized for large collections)
- */
-function filterRelatedPosts({ id, data: { tags } }: CollectionEntry<"blog">) {
-    if (id === post.id) {
-        return false;
-    }
-
-    return tags.some((tag) => post.data.tags.includes(tag));
-}
 ---
 
 <Layout title={data.title}>
     <div class="container">
         <div class="sidebar left">
             <h2 class="text-gradient">Related Blog Posts</h2>
-            <BlogPostList filterFn={filterRelatedPosts} />
+            <BlogPostList posts={relevantPosts} />
         </div>
         <main class="center-content">
             <div class="w-prose">
