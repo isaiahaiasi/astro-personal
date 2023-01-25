@@ -4,22 +4,22 @@ import BlogPostList from "../../../components/BlogPostList.astro";
 import Layout from "../../../layouts/Layout.astro";
 
 interface Props {
-    posts: CollectionEntry<"blog">[];
+	posts: CollectionEntry<"blog">[];
 }
 
 export async function getStaticPaths() {
-    const now = new Date();
-    const entries = await getCollection(
-        "blog",
-        ({ data }) => !data.draft && data.publishedAt < now
-    );
+	const now = new Date();
+	const entries = await getCollection(
+		"blog",
+		({ data }) => !data.draft && data.publishedAt < now
+	);
 
-    const tags = [...new Set(entries.flatMap(({ data }) => data.tags))];
+	const tags = [...new Set(entries.flatMap(({ data }) => data.tags))];
 
-    return tags.map((tag) => ({
-        params: { tag: tag },
-        props: { posts: entries.filter(({ data }) => data.tags.includes(tag)) },
-    }));
+	return tags.map((tag) => ({
+		params: { tag: tag },
+		props: { posts: entries.filter(({ data }) => data.tags.includes(tag)) },
+	}));
 }
 
 // TODO: Not sure why I can't add a Params interface like Props...
@@ -30,8 +30,8 @@ const title = `Posts tagged "${tag}"`;
 ---
 
 <Layout title={title}>
-    <main class="w-prose">
-        <h1 class="text-gradient">{title}</h1>
-        <BlogPostList posts={posts} />
-    </main>
+	<main class="w-prose">
+		<h1 class="text-gradient">{title}</h1>
+		<BlogPostList posts={posts} />
+	</main>
 </Layout>

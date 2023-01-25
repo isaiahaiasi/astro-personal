@@ -1,39 +1,39 @@
 :root {
-  --accent: 124, 58, 237;
-  --accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
+	--accent: 124, 58, 237;
+	--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
 }
 
 html {
-  font-family: system-ui, sans-serif;
-  background-color: #F6F6F6;
-  line-height: 1.5;
+	font-family: system-ui, sans-serif;
+	background-color: #F6F6F6;
+	line-height: 1.5;
 }
 
 code {
-  font-family: menlo, "Fira Code", "IBM Plex Mono", "Lucida Console", "Liberation Mono", "DejaVu Sans Mono",
-    "Bitstream Vera Sans Mono", "Courier New", monospace;
+	font-family: menlo, "Fira Code", "IBM Plex Mono", "Lucida Console", "Liberation Mono", "DejaVu Sans Mono",
+		"Bitstream Vera Sans Mono", "Courier New", monospace;
 }
 
 pre.astro-code {
-  padding: 1rem;
-  border-radius: 10px;
+	padding: 1rem;
+	border-radius: 10px;
 }
 
 .w-prose {
-  max-width: 630px;
-  margin: auto;
+	max-width: 630px;
+	margin: auto;
 }
 
 .text-gradient {
-  background-image: var(--accent-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 400%;
-  background-position: 0%;
+	background-image: var(--accent-gradient);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-size: 400%;
+	background-position: 0%;
 }
 
 .descriptive {
-  color: rgb(86, 86, 86);
-  font-style: italic;
+	color: rgb(86, 86, 86);
+	font-style: italic;
 }

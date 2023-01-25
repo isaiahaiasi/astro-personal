@@ -2,47 +2,47 @@
 import Nav from "./Nav.astro";
 
 export interface Props {
-    title: string;
+	title: string;
 }
 
 const { title } = Astro.props;
 
 const titleActivePageMap: Record<string, string | undefined> = {
-    "Isaiah Althouse": "About",
-    Blog: "Blog",
+	"Isaiah Althouse": "About",
+	Blog: "Blog",
 };
 
 const active = titleActivePageMap[title] ?? title;
 ---
 
 <header class="w-prose">
-    <div class="left logo">
-        <a href="/">
-            <span class="text-gradient text-large">Isaiah</span>
-            <span class="text-small">.fyi</span>
-        </a>
-    </div>
-    <div class="right">
-        <Nav active={active} />
-    </div>
+	<div class="left logo">
+		<a href="/">
+			<span class="text-gradient text-large">Isaiah</span>
+			<span class="text-small">.fyi</span>
+		</a>
+	</div>
+	<div class="right">
+		<Nav active={active} />
+	</div>
 </header>
 
 <style>
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+	header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
 
-    header a {
-        text-decoration: none;
-    }
+	header a {
+		text-decoration: none;
+	}
 
-    .logo {
-        font-weight: bold;
-    }
+	.logo {
+		font-weight: bold;
+	}
 
-    .text-large {
-        font-size: 2rem;
-    }
+	.text-large {
+		font-size: 2rem;
+	}
 </style>

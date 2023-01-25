@@ -1,0 +1,7 @@
+{
+  "[astro][typescript][typescriptreact][css]": {
+    "editor.insertSpaces": false,
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false
+  }
+}

@@ -1,56 +1,56 @@
 ---
 export interface Props {
-    active: string;
+	active: string;
 }
 
 const { active } = Astro.props;
 const navItems = [
-    ["About", "/"],
-    ["Blog", "/blog/"],
+	["About", "/"],
+	["Blog", "/blog/"],
 ];
 ---
 
 <nav>
-    <ul>
-        {
-            navItems.map(([name, url]) => (
-                <li class:list={[{ active: active === name }]}>
-                    <a href={url}>{name}</a>
-                </li>
-            ))
-        }
-    </ul>
+	<ul>
+		{
+			navItems.map(([name, url]) => (
+				<li class:list={[{ active: active === name }]}>
+					<a href={url}>{name}</a>
+				</li>
+			))
+		}
+	</ul>
 </nav>
 
 <style>
-    nav {
-        display: flex;
-        gap: 1rem;
-        flex-direction: flex-end;
-    }
+	nav {
+		display: flex;
+		gap: 1rem;
+		flex-direction: flex-end;
+	}
 
-    nav ul {
-        list-style: none;
-        padding: none;
-        display: flex;
-    }
+	nav ul {
+		list-style: none;
+		padding: none;
+		display: flex;
+	}
 
-    nav a {
-        text-decoration: none;
-        font-size: 1.25rem;
-        font-weight: bold;
-        padding: 0.25rem 0.5rem;
-    }
+	nav a {
+		text-decoration: none;
+		font-size: 1.25rem;
+		font-weight: bold;
+		padding: 0.25rem 0.5rem;
+	}
 
-    nav a:hover {
-        background: lightblue;
-        border-radius: 4px;
-    }
+	nav a:hover {
+		background: lightblue;
+		border-radius: 4px;
+	}
 
-    .active {
-        text-decoration-line: underline;
-        text-decoration-style: wavy;
-        text-decoration-thickness: 2px;
-        text-underline-offset: 4px;
-    }
+	.active {
+		text-decoration-line: underline;
+		text-decoration-style: wavy;
+		text-decoration-thickness: 2px;
+		text-underline-offset: 4px;
+	}
 </style>

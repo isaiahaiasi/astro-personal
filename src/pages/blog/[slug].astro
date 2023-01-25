@@ -6,42 +6,39 @@ import ContentHeadingList from "../../components/ContentHeadingList.astro";
 import Layout from "../../layouts/Layout.astro";
 
 interface Props {
-    post: CollectionEntry<"blog">;
-    relevantPosts: CollectionEntry<"blog">[];
+	post: CollectionEntry<"blog">;
+	relevantPosts: CollectionEntry<"blog">[];
 }
 
 export async function getStaticPaths() {
-    // TODO: Would like to wrap this as getPublishedCollection,
-    // But not sure how to preserve generic typing with non-exported types
-    const now = new Date();
-    const entries = await getCollection(
-        "blog",
-        ({ data }) => !data.draft && data.publishedAt < now
-    );
+	// TODO: Would like to wrap this as getPublishedCollection,
+	// But not sure how to preserve generic typing with non-exported types
+	const now = new Date();
+	const entries = await getCollection(
+		"blog",
+		({ data }) => !data.draft && data.publishedAt < now
+	);
 
-    // There might be no posts with shared tags; in that case, get 3 most recent
-    const recentPosts = entries
-        .sort((a, b) => (a.data.publishedAt < b.data.publishedAt ? 1 : -1))
-        .slice(0, 3);
+	// There might be no posts with shared tags; in that case, get 3 most recent
+	const recentPosts = entries
+		.sort((a, b) => (a.data.publishedAt < b.data.publishedAt ? 1 : -1))
+		.slice(0, 3);
 
-    return entries.map((post) => {
-        const relatedPosts = entries.filter(({ id, data: { tags } }) => {
-            return (
-                id !== post.id &&
-                tags.some((tag) => post.data.tags.includes(tag))
-            );
-        });
+	return entries.map((post) => {
+		const relatedPosts = entries.filter(({ id, data: { tags } }) => {
+			return id !== post.id && tags.some((tag) => post.data.tags.includes(tag));
+		});
 
-        const relevantPosts =
-            relatedPosts.length > 0
-                ? relatedPosts
-                : recentPosts.filter(({ id }) => id !== post.id);
+		const relevantPosts =
+			relatedPosts.length > 0
+				? relatedPosts
+				: recentPosts.filter(({ id }) => id !== post.id);
 
-        return {
-            params: { slug: post.slug },
-            props: { post, relevantPosts },
-        };
-    });
+		return {
+			params: { slug: post.slug },
+			props: { post, relevantPosts },
+		};
+	});
 }
 
 const { post, relevantPosts } = Astro.props;
@@ -50,38 +47,38 @@ const { Content, headings } = await post.render();
 ---
 
 <Layout title={data.title}>
-    <div class="container">
-        <div class="sidebar left">
-            <h2 class="text-gradient">Related Blog Posts</h2>
-            <BlogPostList posts={relevantPosts} />
-        </div>
-        <main class="center-content">
-            <div class="w-prose">
-                <h1 class="text-gradient">{data.title}</h1>
-                <BlogPostInfo data={data} />
-                <Content />
-            </div>
-        </main>
-        <div class="sidebar right">
-            <h2 class="text-gradient">Table of Contents</h2>
-            <ContentHeadingList headings={headings} title={data.title} />
-        </div>
-    </div>
+	<div class="container">
+		<div class="sidebar left">
+			<h2 class="text-gradient">Related Blog Posts</h2>
+			<BlogPostList posts={relevantPosts} />
+		</div>
+		<main class="center-content">
+			<div class="w-prose">
+				<h1 class="text-gradient">{data.title}</h1>
+				<BlogPostInfo data={data} />
+				<Content />
+			</div>
+		</main>
+		<div class="sidebar right">
+			<h2 class="text-gradient">Table of Contents</h2>
+			<ContentHeadingList headings={headings} title={data.title} />
+		</div>
+	</div>
 </Layout>
 
 <style>
-    .container {
-        position: relative;
-        display: flex;
-    }
-    .sidebar {
-        align-self: flex-start;
-        top: 0;
-        position: sticky;
-        padding: 1.5rem;
-        max-width: 20vw;
-    }
-    .center-content {
-        flex: 1;
-    }
+	.container {
+		position: relative;
+		display: flex;
+	}
+	.sidebar {
+		align-self: flex-start;
+		top: 0;
+		position: sticky;
+		padding: 1.5rem;
+		max-width: 20vw;
+	}
+	.center-content {
+		flex: 1;
+	}
 </style>

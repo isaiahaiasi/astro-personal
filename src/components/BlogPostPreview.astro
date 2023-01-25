@@ -3,7 +3,7 @@ import type { CollectionEntry } from "astro:content";
 import BlogPostInfo from "./BlogPostInfo.astro";
 
 export interface Props {
-    post: CollectionEntry<"blog">;
+	post: CollectionEntry<"blog">;
 }
 
 const { post } = Astro.props;
@@ -12,16 +12,16 @@ const url = `/blog/${post.slug}`;
 ---
 
 <div>
-    <a href={url}><h3>{data.title}</h3></a>
-    {data.description && <p>{data.description}</p>}
-    <BlogPostInfo data={data} />
+	<a href={url}><h3>{data.title}</h3></a>
+	{data.description && <p>{data.description}</p>}
+	<BlogPostInfo data={data} />
 </div>
 <style>
-    h3 {
-        margin: 0;
-        line-height: 2em;
-    }
-    p {
-        margin: 0;
-    }
+	h3 {
+		margin: 0;
+		line-height: 2em;
+	}
+	p {
+		margin: 0;
+	}
 </style>
