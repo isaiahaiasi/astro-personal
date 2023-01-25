@@ -1,12 +1,16 @@
 :root {
 	--accent: 124, 58, 237;
 	--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
+	--bg: 246, 246, 246;
+	--col-bg: rgb(var(--bg));
 }
 
 html {
 	font-family: system-ui, sans-serif;
-	background-color: #F6F6F6;
+	background-color: var(--col-bg);
 	line-height: 1.5;
+	scroll-behavior: smooth;
+	scroll-padding-top: 4rem;
 }
 
 code {

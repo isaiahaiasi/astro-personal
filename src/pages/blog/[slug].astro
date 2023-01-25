@@ -52,7 +52,7 @@ const { Content, headings } = await post.render();
 			<h2 class="text-gradient">Related Blog Posts</h2>
 			<BlogPostList posts={relevantPosts} />
 		</div>
-		<main class="center-content">
+		<main class="center">
 			<div class="w-prose">
 				<h1 class="text-gradient">{data.title}</h1>
 				<BlogPostInfo data={data} />
@@ -78,7 +78,7 @@ const { Content, headings } = await post.render();
 		padding: 1.5rem;
 		max-width: 20vw;
 	}
-	.center-content {
+	.center {
 		flex: 1;
 	}
 </style>

@@ -38,6 +38,7 @@ for (const heading of headings) {
 	headingStack.at(-1)!.children?.push(heading);
 	headingStack.push(heading);
 }
+// TODO: Use something like intersection observer to get "active" heading
 ---
 
 <div class="heading-tree">
@@ -68,7 +69,7 @@ for (const heading of headings) {
 <style is:global>
 	.heading-tree {
 		--headings-col-highlight: skyblue;
-		--headings-col-active: yellow;
+		--headings-col-active: rgb(255, 196, 237);
 	}
 
 	.heading-tree ul {
@@ -91,14 +92,24 @@ for (const heading of headings) {
 	.heading-tree a {
 		display: block;
 		padding: 0.5rem;
+		border-radius: 4px;
 	}
 
-	.heading-tree a:hover {
-		border-radius: 4px;
+	.heading-tree a:not(.active):hover {
 		background: var(--headings-col-highlight);
 	}
 
-	.heading-tree .active {
+	.heading-tree a.active {
 		background: var(--headings-col-active);
+		animation: bgfadeout 1.5s ease-in-out forwards;
+	}
+
+	@keyframes bgfadeout {
+		0% {
+			background-color: var(--headings-col-active);
+		}
+		100% {
+			background-color: var(--col-bg);
+		}
 	}
 </style>
