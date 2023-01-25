@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { formatDate } from "../utils/formatDate";
+import BlogPostInfo from "./BlogPostInfo.astro";
 
 export interface Props {
     post: CollectionEntry<"blog">;
@@ -14,11 +14,7 @@ const url = `/blog/${post.slug}`;
 <div>
     <a href={url}><h3>{data.title}</h3></a>
     {data.description && <p>{data.description}</p>}
-    {
-        data.publishedAt && (
-            <p class="descriptive">Published {formatDate(data.publishedAt)}</p>
-        )
-    }
+    <BlogPostInfo data={data} />
 </div>
 <style>
     h3 {

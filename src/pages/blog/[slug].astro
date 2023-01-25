@@ -1,9 +1,9 @@
 ---
 import { CollectionEntry, getCollection } from "astro:content";
+import BlogPostInfo from "../../components/BlogPostInfo.astro";
 import BlogPostList from "../../components/BlogPostList.astro";
 import ContentHeadingList from "../../components/ContentHeadingList.astro";
 import Layout from "../../layouts/Layout.astro";
-import { formatDate } from "../../utils/formatDate";
 
 interface Props {
     post: CollectionEntry<"blog">;
@@ -41,19 +41,13 @@ function filterRelatedPosts({ id, data: { tags } }: CollectionEntry<"blog">) {
 <Layout title={data.title}>
     <div class="container">
         <div class="sidebar left">
-            <h2 class="text-gradient">Other Blog Posts</h2>
-            <BlogPostList filter={filterRelatedPosts} />
+            <h2 class="text-gradient">Related Blog Posts</h2>
+            <BlogPostList filterFn={filterRelatedPosts} />
         </div>
         <main class="center-content">
             <div class="w-prose">
                 <h1 class="text-gradient">{data.title}</h1>
-                {
-                    data.publishedAt && (
-                        <p class="descriptive">
-                            Published {formatDate(data.publishedAt)}
-                        </p>
-                    )
-                }
+                <BlogPostInfo data={data} />
                 <Content />
             </div>
         </main>
@@ -74,7 +68,7 @@ function filterRelatedPosts({ id, data: { tags } }: CollectionEntry<"blog">) {
         top: 0;
         position: sticky;
         padding: 1.5rem;
-        max-width: 15vw;
+        max-width: 20vw;
     }
     .center-content {
         flex: 1;

@@ -70,6 +70,13 @@ declare module 'astro:content' {
   collection: "blog",
   data: InferEntrySchema<"blog">
 },
+"disjoint-set.md": {
+  id: "disjoint-set.md",
+  slug: "disjoint-set",
+  body: string,
+  collection: "blog",
+  data: InferEntrySchema<"blog">
+},
 "headings-test.md": {
   id: "headings-test.md",
   slug: "headings-test",

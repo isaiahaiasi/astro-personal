@@ -3,16 +3,23 @@ import { CollectionEntry, getCollection } from "astro:content";
 import BlogPostPreview from "./BlogPostPreview.astro";
 
 interface Props {
-    filter?: (entry: CollectionEntry<"blog">) => boolean;
+    filterFn?: (entry: CollectionEntry<"blog">) => boolean;
 }
 
-const { filter } = Astro.props;
+const { filterFn } = Astro.props;
 
 const allPosts = await getCollection("blog");
 
-const filteredPosts = filter ? allPosts.filter(filter) : [];
+const filtered = filterFn ? allPosts.filter(filterFn) : [];
 
-const posts = filteredPosts.length > 0 ? filteredPosts : allPosts;
+const pubDateSort = (
+    a: CollectionEntry<"blog">,
+    b: CollectionEntry<"blog">
+) => {
+    return a.data.publishedAt < b.data.publishedAt ? 1 : -1;
+};
+
+const posts = (filtered.length > 0 ? filtered : allPosts).sort(pubDateSort);
 ---
 
 <ul>

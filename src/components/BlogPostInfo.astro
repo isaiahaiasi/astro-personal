@@ -1,0 +1,17 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { formatDate } from "../utils/formatDate";
+
+interface Props {
+    data: CollectionEntry<"blog">["data"];
+}
+
+const { data } = Astro.props;
+
+const { publishedAt, tags } = data;
+---
+
+<div class="descriptive">
+    <div>Published {formatDate(publishedAt)}</div>
+    <div>Tags: {tags.join(", ")}</div>
+</div>
