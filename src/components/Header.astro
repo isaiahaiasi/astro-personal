@@ -15,26 +15,27 @@ const titleActivePageMap: Record<string, string | undefined> = {
 const active = titleActivePageMap[title] ?? title;
 ---
 
-<header class="w-prose">
-	<div class="left logo">
-		<a href="/">
-			<span class="text-gradient text-large">Isaiah</span>
-			<span class="text-small">.fyi</span>
-		</a>
-	</div>
-	<div class="right">
-		<Nav active={active} />
+<header>
+	<div class="container">
+		<div class="left logo">
+			<a href="/">
+				<span class="text-gradient text-large">Isaiah</span>
+				<span class="text-small">.fyi</span>
+			</a>
+		</div>
+		<div class="right">
+			<Nav active={active} />
+		</div>
 	</div>
 </header>
 
 <style>
 	header {
 		position: sticky;
+		position: -webkit-sticky;
 		top: 0;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		background-color: var(--col-bg);
+		background-color: rgb(var(--bg));
+		padding: 0 0.5rem;
 		z-index: 100;
 	}
 
@@ -42,6 +43,11 @@ const active = titleActivePageMap[title] ?? title;
 		text-decoration: none;
 	}
 
+	.container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
 	.logo {
 		font-weight: bold;
 	}

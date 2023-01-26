@@ -1,31 +1,72 @@
 :root {
 	--accent: 124, 58, 237;
 	--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
+	--light-accent: 255, 196, 237;
+	--highlight: 135, 206, 235;
 	--bg: 246, 246, 246;
 	--col-bg: rgb(var(--bg));
+
+	--screen-desktop: 600px;
+}
+
+* {
+	box-sizing: border-box;
 }
 
 html {
 	font-family: system-ui, sans-serif;
 	background-color: var(--col-bg);
 	line-height: 1.5;
-	scroll-behavior: smooth;
-	scroll-padding-top: 4rem;
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	/* overflow-x: hidden; */
+	box-sizing: border-box;
+}
+
+main {
+	margin: 0 auto;
 }
 
 code {
+	tab-size: 2;
 	font-family: menlo, "Fira Code", "IBM Plex Mono", "Lucida Console", "Liberation Mono", "DejaVu Sans Mono",
 		"Bitstream Vera Sans Mono", "Courier New", monospace;
 }
 
 pre.astro-code {
-	padding: 1rem;
-	border-radius: 10px;
+	padding: .5rem;
+}
+
+.break-words {
+	/* These are technically the same, but use both */
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+
+	word-break: break-word;
+
+	/* Adds a hyphen where the word breaks, if supported (No Blink) */
+	/* This is a little too aggressive for me */
+	/* -ms-hyphens: auto;
+	-moz-hyphens: auto;
+	-webkit-hyphens: auto; */
+	/* hyphens: auto; */
+
+}
+
+/* Wrapped around <Content/> Astro component */
+.content> :not(pre) {
+	margin-right: .25rem;
+	margin-left: .25rem;
 }
 
 .w-prose {
-	max-width: 630px;
-	margin: auto;
+	max-width: 100%;
+	width: 630px;
+	min-width: 0;
+	margin: 0 auto;
 }
 
 .text-gradient {
@@ -40,4 +81,11 @@ pre.astro-code {
 .descriptive {
 	color: rgb(86, 86, 86);
 	font-style: italic;
+}
+
+@media only screen and (min-width: 600px) {
+	pre.astro-code {
+		padding: 1rem;
+		border-radius: 10px;
+	}
 }

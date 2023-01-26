@@ -84,14 +84,12 @@ declare module 'astro:content' {
   collection: "blog",
   data: InferEntrySchema<"blog">
 },
-},
-"projects": {
 "shoevox.md": {
   id: "shoevox.md",
   slug: "shoevox",
   body: string,
-  collection: "projects",
-  data: any
+  collection: "blog",
+  data: InferEntrySchema<"blog">
 },
 },
 

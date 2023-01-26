@@ -1,7 +1,7 @@
 ---
 title: "Shoevox: Social dioramas"
-slug: shoevox
-createdAt: 2023-01-16
+publishedAt: 2023-01-16
+description: A very short post about Shoevox.
 ---
 ## What is "Shoevox"?
 
